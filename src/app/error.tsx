@@ -5,12 +5,12 @@ import { RiAlarmWarningFill } from 'react-icons/ri';
 
 import TextButton from '@/components/buttons/TextButton';
 
-export default function Error({
+export default function ErrorComponent({
   error,
   reset,
 }: {
-  error: Error & { digest?: string };
-  reset: () => void;
+  readonly error: Error & { digest?: string };
+  readonly reset: () => void;
 }) {
   React.useEffect(() => {
     // eslint-disable-next-line no-console
