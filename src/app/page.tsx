@@ -14,6 +14,7 @@ export default function HomePage() {
 
   const handleNext = () => {
     setFade(true);
+    navigator.vibrate(200);
     setTimeout(() => {
       setIndex((prevIndex) => (prevIndex + 1) % dataPage.length);
       setFade(false);
@@ -22,6 +23,7 @@ export default function HomePage() {
 
   const handlePrev = () => {
     setFade(true);
+    navigator.vibrate(200);
     setTimeout(() => {
       setIndex(
         (prevIndex) => (prevIndex - 1 + dataPage.length) % dataPage.length,
@@ -67,7 +69,7 @@ export default function HomePage() {
               {['end', 'body'].includes(dataPage[index].arrangement) && (
                 <button
                   onClick={handlePrev}
-                  className='bg-gray-300 dark:bg-gray-700 w-12 h-12 mr-2 rounded-full focus:outline-none'
+                  className='bg-gray-300 dark:bg-gray-700 w-12 h-12 mr-2 rounded-full focus:outline-none active:bg-gray-700 dark:active:bg-gray-300'
                 >
                   <div className='text-white dark:text-gray-900 rotate-180'>
                     <NextIcon />
@@ -77,7 +79,7 @@ export default function HomePage() {
               {['start', 'body'].includes(dataPage[index].arrangement) && (
                 <button
                   onClick={handleNext}
-                  className='bg-gray-300 dark:bg-gray-700 w-12 h-12 rounded-full focus:outline-none'
+                  className='bg-gray-300 dark:bg-gray-700 w-12 h-12 rounded-full focus:outline-none active:bg-gray-700 dark:active:bg-gray-300'
                 >
                   <div className='text-white dark:text-gray-900'>
                     <NextIcon />
