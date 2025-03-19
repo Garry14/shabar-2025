@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '@/lib/env';
 
 import DarkModeSwitch from '@/components/buttons/DarkModeSwitch';
@@ -10,7 +10,15 @@ import { dataPage } from '@/constant/data';
 
 export default function HomePage() {
   const [fade, setFade] = useState<boolean>(false);
-  const indexFromStorage = Number(localStorage?.getItem('index') ?? 0);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const indexFromStorage = isClient
+    ? Number(localStorage?.getItem('index') ?? 0)
+    : 0;
 
   const handleNext = () => {
     setFade(true);
