@@ -5,6 +5,7 @@ import '@/lib/env';
 
 import DarkModeSwitch from '@/components/buttons/DarkModeSwitch';
 import NextIcon from '@/components/icons/NextIcon';
+import Skeleton from '@/components/Skeleton';
 
 import { dataPage } from '@/constant/data';
 
@@ -46,6 +47,37 @@ export default function HomePage() {
       setFade(false);
     }, 500);
   };
+
+  if (!isClient) {
+    return (
+      <>
+        <main>
+          <section className='bg-white dark:bg-gray-900'>
+            <DarkModeSwitch />
+            <div className='layout relative py-12 flex flex-col md:flex-row items-center justify-center min-h-screen w-full'>
+              <Skeleton />
+            </div>
+          </section>
+        </main>
+        <style>{`
+        .fade-enter {
+          opacity: 0;
+        }
+        .fade-enter-active {
+          opacity: 1;
+          transition: opacity 0.5s ease-in;
+        }
+        .fade-exit {
+          opacity: 1;
+        }
+        .fade-exit-active {
+          opacity: 0;
+          transition: opacity 0.5s ease-out;
+        }
+      `}</style>
+      </>
+    );
+  }
 
   return (
     <>
