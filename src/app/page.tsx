@@ -33,14 +33,34 @@ export default function HomePage() {
     <>
       <main>
         <section className='bg-white'>
-          <div className='layout relative py-12 flex flex-col items-center justify-center min-h-screen'>
+          <div className='layout relative py-12 flex flex-col md:flex-row items-center justify-center min-h-screen w-full'>
+            {['end', 'body'].includes(dataPage[index].arrangement) && (
+              <button
+                onClick={handlePrev}
+                className='bg-green-500 hover:bg-green-300 w-12 h-12 mr-3 flex-shrink-0 rounded-full hidden md:block'
+              >
+                <div className='text-white rotate-180'>
+                  <NextIcon />
+                </div>
+              </button>
+            )}
             <div
               className={`font-thin text-6xl text-center ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
             >
               {dataPage[index].content}
             </div>
+            {['start', 'body'].includes(dataPage[index].arrangement) && (
+              <button
+                onClick={handleNext}
+                className='bg-green-500 hover:bg-green-300 w-12 h-12 ml-3 flex-shrink-0 rounded-full hidden md:block'
+              >
+                <div className='text-white'>
+                  <NextIcon />
+                </div>
+              </button>
+            )}
 
-            <div className='mt-9 w-full flex justify-center animate-fadeIn'>
+            <div className='mt-9 w-full flex justify-center md:hidden'>
               {['end', 'body'].includes(dataPage[index].arrangement) && (
                 <button
                   onClick={handlePrev}
