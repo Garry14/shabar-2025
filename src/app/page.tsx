@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import '@/lib/env';
 
+import DarkModeSwitch from '@/components/buttons/DarkModeSwitch';
 import NextIcon from '@/components/icons/NextIcon';
 
 import { dataPage } from '@/constant/data';
@@ -31,30 +32,33 @@ export default function HomePage() {
 
   return (
     <>
-      <main>
-        <section className='bg-white'>
+      <main className='relative'>
+        <div className='absolute top-2 right-2'>
+          <DarkModeSwitch />
+        </div>
+        <section className='bg-white dark:bg-gray-900'>
           <div className='layout relative py-12 flex flex-col md:flex-row items-center justify-center min-h-screen w-full'>
             {['end', 'body'].includes(dataPage[index].arrangement) && (
               <button
                 onClick={handlePrev}
-                className={`bg-gray-300 hover:bg-black w-12 h-12 mr-3 flex-shrink-0 rounded-full hidden md:block ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
+                className={`bg-gray-300 dark:bg-gray-700 hover:bg-black dark:hover:bg-white w-12 h-12 mr-3 flex-shrink-0 rounded-full hidden md:block ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
               >
-                <div className='text-white rotate-180'>
+                <div className='text-white dark:text-gray-900 rotate-180'>
                   <NextIcon />
                 </div>
               </button>
             )}
             <div
-              className={`px-3 font-thin text-2xl md:text-6xl text-center ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
+              className={`px-3 dark:text-gray-200 font-thin text-2xl md:text-6xl text-center ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
             >
               {dataPage[index].content}
             </div>
             {['start', 'body'].includes(dataPage[index].arrangement) && (
               <button
                 onClick={handleNext}
-                className={`bg-gray-300 hover:bg-black w-12 h-12 ml-3 flex-shrink-0 rounded-full hidden md:block ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
+                className={`bg-gray-300 dark:bg-gray-700 hover:bg-black dark:hover:bg-white w-12 h-12 ml-3 flex-shrink-0 rounded-full hidden md:block ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
               >
-                <div className='text-white'>
+                <div className='text-white dark:text-gray-900'>
                   <NextIcon />
                 </div>
               </button>
@@ -66,9 +70,9 @@ export default function HomePage() {
               {['end', 'body'].includes(dataPage[index].arrangement) && (
                 <button
                   onClick={handlePrev}
-                  className='bg-gray-300 hover:bg-black w-12 h-12 mr-2 rounded-full'
+                  className='bg-gray-300 dark:bg-gray-700 hover:bg-black dark:hover:bg-white w-12 h-12 mr-2 rounded-full'
                 >
-                  <div className='text-white rotate-180'>
+                  <div className='text-white dark:text-gray-900 rotate-180'>
                     <NextIcon />
                   </div>
                 </button>
@@ -76,9 +80,9 @@ export default function HomePage() {
               {['start', 'body'].includes(dataPage[index].arrangement) && (
                 <button
                   onClick={handleNext}
-                  className='bg-gray-300 hover:bg-black w-12 h-12 rounded-full'
+                  className='bg-gray-300 dark:bg-gray-700 hover:bg-black dark:hover:bg-white w-12 h-12 rounded-full'
                 >
-                  <div className='text-white'>
+                  <div className='text-white dark:text-gray-900'>
                     <NextIcon />
                   </div>
                 </button>
