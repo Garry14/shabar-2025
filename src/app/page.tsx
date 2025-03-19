@@ -9,14 +9,17 @@ import NextIcon from '@/components/icons/NextIcon';
 import { dataPage } from '@/constant/data';
 
 export default function HomePage() {
-  const [index, setIndex] = useState<number>(0);
   const [fade, setFade] = useState<boolean>(false);
+  const indexFromStorage = Number(localStorage?.getItem('index') ?? 0);
 
   const handleNext = () => {
     setFade(true);
     navigator.vibrate(200);
     setTimeout(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % dataPage.length);
+      localStorage.setItem(
+        'index',
+        ((indexFromStorage + 1) % dataPage.length)?.toString(),
+      );
       setFade(false);
     }, 500);
   };
@@ -25,8 +28,12 @@ export default function HomePage() {
     setFade(true);
     navigator.vibrate(200);
     setTimeout(() => {
-      setIndex(
-        (prevIndex) => (prevIndex - 1 + dataPage.length) % dataPage.length,
+      localStorage.setItem(
+        'index',
+        (
+          (indexFromStorage - 1 + dataPage.length) %
+          dataPage.length
+        )?.toString(),
       );
       setFade(false);
     }, 500);
@@ -38,7 +45,9 @@ export default function HomePage() {
         <section className='bg-white dark:bg-gray-900'>
           <DarkModeSwitch />
           <div className='layout relative py-12 flex flex-col md:flex-row items-center justify-center min-h-screen w-full'>
-            {['end', 'body'].includes(dataPage[index].arrangement) && (
+            {['end', 'body'].includes(
+              dataPage[indexFromStorage].arrangement,
+            ) && (
               <button
                 onClick={handlePrev}
                 className={`bg-gray-300 dark:bg-gray-700 hover:bg-black dark:hover:bg-white w-12 h-12 mr-3 flex-shrink-0 rounded-full hidden md:block ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
@@ -50,9 +59,13 @@ export default function HomePage() {
             )}
             <div
               className={`px-3 dark:text-gray-200 font-thin text-2xl md:text-6xl text-center ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
-              dangerouslySetInnerHTML={{ __html: dataPage[index].content }}
+              dangerouslySetInnerHTML={{
+                __html: dataPage[indexFromStorage].content,
+              }}
             />
-            {['start', 'body'].includes(dataPage[index].arrangement) && (
+            {['start', 'body'].includes(
+              dataPage[indexFromStorage].arrangement,
+            ) && (
               <button
                 onClick={handleNext}
                 className={`bg-gray-300 dark:bg-gray-700 hover:bg-black dark:hover:bg-white w-12 h-12 ml-3 flex-shrink-0 rounded-full hidden md:block ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
@@ -66,7 +79,9 @@ export default function HomePage() {
             <div
               className={`mt-9 w-full flex justify-center md:hidden ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
             >
-              {['end', 'body'].includes(dataPage[index].arrangement) && (
+              {['end', 'body'].includes(
+                dataPage[indexFromStorage].arrangement,
+              ) && (
                 <button
                   onClick={handlePrev}
                   className='bg-gray-300 dark:bg-gray-700 w-12 h-12 mr-2 rounded-full focus:outline-none active:bg-gray-700 dark:active:bg-gray-300'
@@ -76,7 +91,9 @@ export default function HomePage() {
                   </div>
                 </button>
               )}
-              {['start', 'body'].includes(dataPage[index].arrangement) && (
+              {['start', 'body'].includes(
+                dataPage[indexFromStorage].arrangement,
+              ) && (
                 <button
                   onClick={handleNext}
                   className='bg-gray-300 dark:bg-gray-700 w-12 h-12 rounded-full focus:outline-none active:bg-gray-700 dark:active:bg-gray-300'
