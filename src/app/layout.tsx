@@ -39,12 +39,11 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     images: [`${siteConfig.url}/images/og.jpg`],
-    // creator: '@th_clarence',
+    // creator: '@garry14',
   },
   // authors: [
   //   {
-  //     name: 'Theodorus Clarence',
-  //     url: 'https://theodorusclarence.com',
+  //     name: 'Garry Chandra',
   //   },
   // ],
 };
