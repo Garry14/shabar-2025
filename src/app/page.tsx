@@ -37,7 +37,7 @@ export default function HomePage() {
             {['end', 'body'].includes(dataPage[index].arrangement) && (
               <button
                 onClick={handlePrev}
-                className='bg-green-500 hover:bg-green-300 w-12 h-12 mr-3 flex-shrink-0 rounded-full hidden md:block'
+                className={`bg-green-100 hover:bg-green-300 w-12 h-12 mr-3 flex-shrink-0 rounded-full hidden md:block ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
               >
                 <div className='text-white rotate-180'>
                   <NextIcon />
@@ -45,14 +45,14 @@ export default function HomePage() {
               </button>
             )}
             <div
-              className={`font-thin text-6xl text-center ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
+              className={`px-3 font-thin text-2xl md:text-6xl text-center ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
             >
               {dataPage[index].content}
             </div>
             {['start', 'body'].includes(dataPage[index].arrangement) && (
               <button
                 onClick={handleNext}
-                className='bg-green-500 hover:bg-green-300 w-12 h-12 ml-3 flex-shrink-0 rounded-full hidden md:block'
+                className={`bg-green-100 hover:bg-green-300 w-12 h-12 ml-3 flex-shrink-0 rounded-full hidden md:block ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
               >
                 <div className='text-white'>
                   <NextIcon />
@@ -60,11 +60,13 @@ export default function HomePage() {
               </button>
             )}
 
-            <div className='mt-9 w-full flex justify-center md:hidden'>
+            <div
+              className={`mt-9 w-full flex justify-center md:hidden ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
+            >
               {['end', 'body'].includes(dataPage[index].arrangement) && (
                 <button
                   onClick={handlePrev}
-                  className='bg-green-500 hover:bg-green-300 w-12 h-12 mr-2 rounded-full'
+                  className='bg-green-100 hover:bg-green-300 w-12 h-12 mr-2 rounded-full'
                 >
                   <div className='text-white rotate-180'>
                     <NextIcon />
@@ -74,7 +76,7 @@ export default function HomePage() {
               {['start', 'body'].includes(dataPage[index].arrangement) && (
                 <button
                   onClick={handleNext}
-                  className='bg-green-500 hover:bg-green-300 w-12 h-12 rounded-full'
+                  className='bg-green-100 hover:bg-green-300 w-12 h-12 rounded-full'
                 >
                   <div className='text-white'>
                     <NextIcon />
