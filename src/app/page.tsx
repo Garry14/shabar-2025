@@ -17,7 +17,7 @@ export default function HomePage() {
     setTimeout(() => {
       setIndex((prevIndex) => (prevIndex + 1) % dataPage.length);
       setFade(false);
-    }, 500); // Match the duration of the fade-out animation
+    }, 500);
   };
 
   const handlePrev = () => {
@@ -27,16 +27,14 @@ export default function HomePage() {
         (prevIndex) => (prevIndex - 1 + dataPage.length) % dataPage.length,
       );
       setFade(false);
-    }, 500); // Match the duration of the fade-out animation
+    }, 500);
   };
 
   return (
     <>
-      <main className='relative'>
-        <div className='absolute top-2 right-2'>
-          <DarkModeSwitch />
-        </div>
+      <main>
         <section className='bg-white dark:bg-gray-900'>
+          <DarkModeSwitch />
           <div className='layout relative py-12 flex flex-col md:flex-row items-center justify-center min-h-screen w-full'>
             {['end', 'body'].includes(dataPage[index].arrangement) && (
               <button
@@ -50,9 +48,8 @@ export default function HomePage() {
             )}
             <div
               className={`px-3 dark:text-gray-200 font-thin text-2xl md:text-6xl text-center ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
-            >
-              {dataPage[index].content}
-            </div>
+              dangerouslySetInnerHTML={{ __html: dataPage[index].content }}
+            />
             {['start', 'body'].includes(dataPage[index].arrangement) && (
               <button
                 onClick={handleNext}
@@ -70,7 +67,7 @@ export default function HomePage() {
               {['end', 'body'].includes(dataPage[index].arrangement) && (
                 <button
                   onClick={handlePrev}
-                  className='bg-gray-300 dark:bg-gray-700 hover:bg-black dark:hover:bg-white w-12 h-12 mr-2 rounded-full'
+                  className='bg-gray-300 dark:bg-gray-700 w-12 h-12 mr-2 rounded-full focus:outline-none'
                 >
                   <div className='text-white dark:text-gray-900 rotate-180'>
                     <NextIcon />
@@ -80,7 +77,7 @@ export default function HomePage() {
               {['start', 'body'].includes(dataPage[index].arrangement) && (
                 <button
                   onClick={handleNext}
-                  className='bg-gray-300 dark:bg-gray-700 hover:bg-black dark:hover:bg-white w-12 h-12 rounded-full'
+                  className='bg-gray-300 dark:bg-gray-700 w-12 h-12 rounded-full focus:outline-none'
                 >
                   <div className='text-white dark:text-gray-900'>
                     <NextIcon />
