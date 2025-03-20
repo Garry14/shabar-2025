@@ -1,5 +1,6 @@
 'use client';
 
+import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import '@/lib/env';
 
@@ -17,17 +18,18 @@ export default function HomePage() {
     setIsClient(true);
   }, []);
 
-  const indexFromStorage = isClient
-    ? Number(localStorage?.getItem('index') ?? 0)
-    : 0;
+  const indexFromStorage = isClient ? Number(Cookies?.get('index') ?? 0) : 0;
 
   const handleNext = () => {
     setFade(true);
     navigator.vibrate(200);
     setTimeout(() => {
-      localStorage.setItem(
+      Cookies.set(
         'index',
         ((indexFromStorage + 1) % dataPage.length)?.toString(),
+        {
+          expires: 1,
+        },
       );
       setFade(false);
     }, 500);
@@ -37,12 +39,15 @@ export default function HomePage() {
     setFade(true);
     navigator.vibrate(200);
     setTimeout(() => {
-      localStorage.setItem(
+      Cookies.set(
         'index',
         (
           (indexFromStorage - 1 + dataPage.length) %
           dataPage.length
         )?.toString(),
+        {
+          expires: 1,
+        },
       );
       setFade(false);
     }, 500);
