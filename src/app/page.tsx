@@ -20,10 +20,13 @@ export default function HomePage() {
   }, []);
 
   const indexFromStorage = isClient ? Number(Cookies?.get('index') ?? 0) : 0;
+  const canVibrate = 'vibrate' in navigator;
 
   const handleNext = () => {
     setFade(true);
-    navigator.vibrate(200);
+    if (canVibrate) {
+      navigator.vibrate(200);
+    }
     setTimeout(() => {
       Cookies.set(
         'index',
@@ -38,7 +41,9 @@ export default function HomePage() {
 
   const handlePrev = () => {
     setFade(true);
-    navigator.vibrate(200);
+    if (canVibrate) {
+      navigator.vibrate(200);
+    }
     setTimeout(() => {
       Cookies.set(
         'index',
