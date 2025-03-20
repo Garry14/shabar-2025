@@ -1,6 +1,7 @@
 'use client';
 
 import Cookies from 'js-cookie';
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import '@/lib/env';
 
@@ -86,6 +87,12 @@ export default function HomePage() {
 
   return (
     <>
+      <Head>
+        <meta
+          name='format-detection'
+          content='telephone=no, date=no, email=no, address=no'
+        />
+      </Head>
       <main>
         <section className='bg-white dark:bg-gray-900'>
           <DarkModeSwitch />
