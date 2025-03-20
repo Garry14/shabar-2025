@@ -103,7 +103,7 @@ export default function HomePage() {
               </button>
             )}
             <div
-              className={`px-3 dark:text-gray-200 font-thin text-2xl md:text-6xl text-center ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
+              className={`px-3 overflow-hidden dark:text-gray-200 font-thin text-2xl md:text-6xl text-center ${fade ? 'fade-exit-active' : 'fade-enter-active'}`}
               dangerouslySetInnerHTML={{
                 __html: dataPage[indexFromStorage].content,
               }}
