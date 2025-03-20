@@ -5,6 +5,11 @@ export const dataPage = [
     arrangement: 'start',
   },
   {
+    content:
+      'Iya bentuknya Next/Prev begini kayak abis install Windows, tenang kalo ke-refresh gak bakal dari awal kok',
+    arrangement: 'body',
+  },
+  {
     content: 'Bismillah...',
     arrangement: 'body',
   },
